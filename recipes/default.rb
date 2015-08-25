@@ -5,15 +5,34 @@
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 include_recipe "java"
 include_recipe "maven"
-package 'mysql'
-package 'epel-release'
 
-yum_package 'docker-io' do
-  options '--enablerepo=epel'
+# Configure the mysql2 Ruby gem.
+mysql2_chef_gem 'default' do
+  action :install
 end
 
-service 'docker' do
-  action [:enable, :start]
+# Configure the MySQL client.
+mysql_client 'default' do
+  action :create
+end
+
+# Configure the MySQL service.
+mysql_service 'default' do
+  initial_root_password 'betanzos'
+  notifies :run, "execute[sock-link]", :immediately
+  action [:create, :start]
+end
+
+# Add a database user.
+mysql_database_user 'demouser' do
+  connection(
+    :host => '127.0.0.1',
+    :username => 'root',
+    :password => 'betanzos'
+  )
+  password 'demouser'
+  host '127.0.0.1'
+  action [:create, :grant]
 end
 
 remote_file "/vagrant/resources/mule-standalone-3.5.0.tar.gz" do
@@ -28,12 +47,6 @@ remote_file "/vagrant/resources/api-umbrella-0.8.0-1.el6.x86_64.rpm" do
   notifies :run, "execute[configure_apiumbrella]", :immediately
 end
 
-execute "configure_apiumbrella" do
-  command 'yum install -y /vagrant/resources/api-umbrella-0.8.0-1.el6.x86_64.rpm'
-  not_if '[ -f /etc/init.d/api-umbrella ]'
-  action :run
-end
-
 bash "configure_mule" do
   user "root"
   cwd "/opt"
@@ -46,9 +59,21 @@ bash "configure_mule" do
   notifies :run, "execute[start-mule]", :immediately
 end
 
+execute "configure_apiumbrella" do
+  command 'yum install -y /vagrant/resources/api-umbrella-0.8.0-1.el6.x86_64.rpm'
+  not_if '[ -f /etc/init.d/api-umbrella ]'
+  action :run
+end
+
+execute "sock-link" do
+  command 'ln -fs /var/run/mysql-default/mysqld.sock /var/lib/mysql/mysql.sock'
+  not_if '[ -h /var/lib/mysql/mysql.sock ]'
+  action :nothing
+end
+
 execute 'start-mule' do
   command '/opt/mule/bin/mule -M-Dmule.mmc.bind.port=7773 -Wwrapper.daemonize=TRUE'
-  action :run
+  action :nothing
 end
 
 firewall 'ufw' do
@@ -61,6 +86,6 @@ firewall_rule 'apiumbrella' do
 end
 
 firewall_rule 'mule-appsftw35' do
-  port      8083
+  port      8081
   action    :allow
 end

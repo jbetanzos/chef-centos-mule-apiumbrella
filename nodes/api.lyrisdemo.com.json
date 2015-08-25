@@ -5,7 +5,7 @@
 
     ],
     "java": {
-      "jdk_version": "8",
+      "jdk_version": "7",
       "install_flavor": "oracle",
       "oracle": {
         "accept_oracle_download_terms": true
@@ -16,6 +16,418 @@
     }
   },
   "default": {
+    "apt": {
+      "cacher-client": {
+        "restrict_environment": false
+      },
+      "cacher_dir": "/var/cache/apt-cacher-ng",
+      "cacher_interface": null,
+      "cacher_port": 3142,
+      "cacher_ssl_support": false,
+      "caching_server": false,
+      "compiletime": false,
+      "compile_time_update": false,
+      "key_proxy": "",
+      "cache_bypass": {
+
+      },
+      "periodic_update_min_delay": 86400,
+      "launchpad_api_version": "1.0",
+      "unattended_upgrades": {
+        "enable": false,
+        "update_package_lists": true,
+        "allowed_origins": [
+          "Centos "
+        ],
+        "package_blacklist": [
+
+        ],
+        "auto_fix_interrupted_dpkg": false,
+        "minimal_steps": false,
+        "install_on_shutdown": false,
+        "mail": null,
+        "mail_only_on_error": true,
+        "remove_unused_dependencies": false,
+        "automatic_reboot": false,
+        "automatic_reboot_time": "now",
+        "dl_limit": null
+      }
+    },
+    "build-essential": {
+      "compile_time": false
+    },
+    "openssl": {
+      "packages": [
+
+      ],
+      "restart_services": [
+
+      ]
+    },
+    "postgresql": {
+      "enable_pgdg_apt": false,
+      "server": {
+        "config_change_notify": "restart"
+      },
+      "assign_postgres_password": true,
+      "database_name": "template1",
+      "version": "8.4",
+      "config": {
+        "data_directory": null,
+        "listen_addresses": "localhost",
+        "port": 5432,
+        "max_connections": 100,
+        "shared_buffers": "32MB",
+        "logging_collector": true,
+        "log_directory": "pg_log",
+        "log_filename": "postgresql-%a.log",
+        "log_truncate_on_rotation": true,
+        "log_rotation_age": "1d",
+        "log_rotation_size": 0,
+        "datestyle": "iso, mdy",
+        "lc_messages": "en_US.UTF-8",
+        "lc_monetary": "en_US.UTF-8",
+        "lc_numeric": "en_US.UTF-8",
+        "lc_time": "en_US.UTF-8",
+        "default_text_search_config": "pg_catalog.english"
+      },
+      "pg_hba": [
+        {
+          "type": "local",
+          "db": "all",
+          "user": "postgres",
+          "addr": null,
+          "method": "ident"
+        },
+        {
+          "type": "local",
+          "db": "all",
+          "user": "all",
+          "addr": null,
+          "method": "ident"
+        },
+        {
+          "type": "host",
+          "db": "all",
+          "user": "all",
+          "addr": "127.0.0.1/32",
+          "method": "md5"
+        },
+        {
+          "type": "host",
+          "db": "all",
+          "user": "all",
+          "addr": "::1/128",
+          "method": "md5"
+        }
+      ],
+      "password": {
+
+      },
+      "enable_pgdg_yum": false,
+      "initdb_locale": null,
+      "pgdg": {
+        "repo_rpm_url": {
+          "9.3": {
+            "amazon": {
+              "2014": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-6-i386/pgdg-redhat93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-redhat93-9.3-1.noarch.rpm"
+              },
+              "2013": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-6-i386/pgdg-redhat93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-redhat93-9.3-1.noarch.rpm"
+              }
+            },
+            "centos": {
+              "7": {
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-7-x86_64/pgdg-centos93-9.3-1.noarch.rpm"
+              },
+              "6": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-6-i386/pgdg-centos93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-centos93-9.3-1.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-5-i386/pgdg-centos93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-5-x86_64/pgdg-centos93-9.3-1.noarch.rpm"
+              }
+            },
+            "redhat": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-6-i386/pgdg-redhat93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-redhat93-9.3-1.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-5-i386/pgdg-redhat93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-5-x86_64/pgdg-redhat93-9.3-1.noarch.rpm"
+              }
+            },
+            "oracle": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-6-i386/pgdg-redhat93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-redhat93-9.3-1.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-5-i386/pgdg-redhat93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-5-x86_64/pgdg-redhat93-9.3-1.noarch.rpm"
+              }
+            },
+            "scientific": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-6-i386/pgdg-sl93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-sl93-9.3-1.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.3/redhat/rhel-5-i386/pgdg-sl93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/redhat/rhel-5-x86_64/pgdg-sl93-9.3-1.noarch.rpm"
+              }
+            },
+            "fedora": {
+              "20": {
+                "x86_64": "http://yum.postgresql.org/9.3/fedora/fedora-20-x86_64/pgdg-fedora93-9.3-1.noarch.rpm"
+              },
+              "19": {
+                "x86_64": "http://yum.postgresql.org/9.3/fedora/fedora-19-x86_64/pgdg-fedora93-9.3-1.noarch.rpm"
+              },
+              "18": {
+                "i386": "http://yum.postgresql.org/9.3/fedora/fedora-18-i386/pgdg-fedora93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/fedora/fedora-18-x86_64/pgdg-fedora93-9.3-1.noarch.rpm"
+              },
+              "17": {
+                "i386": "http://yum.postgresql.org/9.3/fedora/fedora-17-i386/pgdg-fedora93-9.3-1.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.3/fedora/fedora-17-x86_64/pgdg-fedora93-9.3-1.noarch.rpm"
+              }
+            }
+          },
+          "9.2": {
+            "centos": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.2/redhat/rhel-6-i386/pgdg-centos92-9.2-6.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-6.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.2/redhat/rhel-5-i386/pgdg-centos92-9.2-6.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/redhat/rhel-5-x86_64/pgdg-centos92-9.2-6.noarch.rpm"
+              }
+            },
+            "redhat": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.2/redhat/rhel-6-i386/pgdg-redhat92-9.2-7.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-redhat92-9.2-7.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.2/redhat/rhel-5-i386/pgdg-redhat92-9.2-7.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/redhat/rhel-5-x86_64/pgdg-redhat92-9.2-7.noarch.rpm"
+              }
+            },
+            "oracle": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.2/redhat/rhel-6-i386/pgdg-redhat92-9.2-7.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-redhat92-9.2-7.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.2/redhat/rhel-5-i386/pgdg-redhat92-9.2-7.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/redhat/rhel-5-x86_64/pgdg-redhat92-9.2-7.noarch.rpm"
+              }
+            },
+            "scientific": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.2/redhat/rhel-6-i386/pgdg-sl92-9.2-8.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-sl92-9.2-8.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.2/redhat/rhel-5-i386/pgdg-sl92-9.2-8.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/redhat/rhel-5-x86_64/pgdg-sl92-9.2-8.noarch.rpm"
+              }
+            },
+            "fedora": {
+              "19": {
+                "i386": "http://yum.postgresql.org/9.2/fedora/fedora-19-i386/pgdg-fedora92-9.2-6.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/fedora/fedora-19-x86_64/pgdg-fedora92-9.2-6.noarch.rpm"
+              },
+              "18": {
+                "i386": "http://yum.postgresql.org/9.2/fedora/fedora-18-i386/pgdg-fedora92-9.2-6.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/fedora/fedora-18-x86_64/pgdg-fedora92-9.2-6.noarch.rpm"
+              },
+              "17": {
+                "i386": "http://yum.postgresql.org/9.2/fedora/fedora-17-i386/pgdg-fedora92-9.2-6.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/fedora/fedora-17-x86_64/pgdg-fedora92-9.2-5.noarch.rpm"
+              },
+              "16": {
+                "i386": "http://yum.postgresql.org/9.2/fedora/fedora-16-i386/pgdg-fedora92-9.2-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.2/fedora/fedora-16-x86_64/pgdg-fedora92-9.2-5.noarch.rpm"
+              }
+            }
+          },
+          "9.1": {
+            "centos": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.1/redhat/rhel-6-i386/pgdg-centos91-9.1-4.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/redhat/rhel-5-x86_64/pgdg-centos91-9.1-4.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.1/redhat/rhel-5-i386/pgdg-centos91-9.1-4.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/redhat/rhel-5-x86_64/pgdg-centos91-9.1-4.noarch.rpm"
+              },
+              "4": {
+                "i386": "http://yum.postgresql.org/9.1/redhat/rhel-4-i386/pgdg-centos91-9.1-4.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/redhat/rhel-4-x86_64/pgdg-centos91-9.1-4.noarch.rpm"
+              }
+            },
+            "redhat": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.1/redhat/rhel-6-i386/pgdg-redhat91-9.1-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/redhat/rhel-6-x86_64/pgdg-redhat91-9.1-5.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.1/redhat/rhel-5-i386/pgdg-redhat91-9.1-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/redhat/rhel-5-x86_64/pgdg-redhat91-9.1-5.noarch.rpm"
+              },
+              "4": {
+                "i386": "http://yum.postgresql.org/9.1/redhat/rhel-4-i386/pgdg-redhat-9.1-4.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/redhat/rhel-4-x86_64/pgdg-redhat-9.1-4.noarch.rpm"
+              }
+            },
+            "scientific": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.1/redhat/rhel-6-i386/pgdg-sl91-9.1-6.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/redhat/rhel-6-x86_64/pgdg-sl91-9.1-6.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.1/redhat/rhel-5-i386/pgdg-sl91-9.1-6.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/redhat/rhel-5-x86_64/pgdg-sl91-9.1-6.noarch.rpm"
+              }
+            },
+            "fedora": {
+              "16": {
+                "i386": "http://yum.postgresql.org/9.1/fedora/fedora-16-i386/pgdg-fedora91-9.1-4.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/fedora/fedora-16-x86_64/pgdg-fedora91-9.1-4.noarch.rpm"
+              },
+              "15": {
+                "i386": "http://yum.postgresql.org/9.1/fedora/fedora-15-i386/pgdg-fedora91-9.1-4.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/fedora/fedora-15-x86_64/pgdg-fedora91-9.1-4.noarch.rpm"
+              },
+              "14": {
+                "i386": "http://yum.postgresql.org/9.1/fedora/fedora-14-i386/pgdg-fedora91-9.1-4.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.1/fedora/fedora-14-x86_64/pgdg-fedora-9.1-2.noarch.rpm"
+              }
+            }
+          },
+          "9.0": {
+            "centos": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.0/redhat/rhel-6-i386/pgdg-centos90-9.0-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/redhat/rhel-6-x86_64/pgdg-centos90-9.0-5.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.0/redhat/rhel-5-i386/pgdg-centos90-9.0-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/redhat/rhel-5-x86_64/pgdg-centos90-9.0-5.noarch.rpm"
+              },
+              "4": {
+                "i386": "http://yum.postgresql.org/9.0/redhat/rhel-4-i386/pgdg-centos90-9.0-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/redhat/rhel-4-x86_64/pgdg-centos90-9.0-5.noarch.rpm"
+              }
+            },
+            "redhat": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.0/redhat/rhel-6-i386/pgdg-redhat90-9.0-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/redhat/rhel-6-x86_64/pgdg-redhat90-9.0-5.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.0/redhat/rhel-5-i386/pgdg-redhat90-9.0-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/redhat/rhel-5-x86_64/pgdg-redhat90-9.0-5.noarch.rpm"
+              },
+              "4": {
+                "i386": "http://yum.postgresql.org/9.0/redhat/rhel-4-i386/pgdg-redhat90-9.0-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/redhat/rhel-4-x86_64/pgdg-redhat90-9.0-5.noarch.rpm"
+              }
+            },
+            "scientific": {
+              "6": {
+                "i386": "http://yum.postgresql.org/9.0/redhat/rhel-6-i386/pgdg-sl90-9.0-6.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/redhat/rhel-6-x86_64/pgdg-sl90-9.0-6.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/9.0/redhat/rhel-5-i386/pgdg-sl90-9.0-6.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/redhat/rhel-5-x86_64/pgdg-sl90-9.0-6.noarch.rpm"
+              }
+            },
+            "fedora": {
+              "15": {
+                "i386": "http://yum.postgresql.org/9.0/fedora/fedora-15-i386/pgdg-fedora90-9.0-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/fedora/fedora-15-x86_64/pgdg-fedora90-9.0-5.noarch.rpm"
+              },
+              "14": {
+                "i386": "http://yum.postgresql.org/9.0/fedora/fedora-14-i386/pgdg-fedora90-9.0-5.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/9.0/fedora/fedora-14-x86_64/pgdg-fedora90-9.0-5.noarch.rpm"
+              }
+            }
+          },
+          "8.4": {
+            "centos": {
+              "6": {
+                "i386": "http://yum.postgresql.org/8.4/redhat/rhel-6-i386/pgdg-centos-8.4-3.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/8.4/redhat/rhel-6-x86_64/pgdg-centos-8.4-3.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/8.4/redhat/rhel-5-i386/pgdg-centos-8.4-3.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/8.4/redhat/rhel-5-x86_64/pgdg-centos-8.4-3.noarch.rpm"
+              },
+              "4": {
+                "i386": "http://yum.postgresql.org/8.4/redhat/rhel-4-i386/pgdg-centos-8.4-3.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/8.4/redhat/rhel-4-x86_64/pgdg-centos-8.4-3.noarch.rpm"
+              }
+            },
+            "redhat": {
+              "6": {
+                "i386": "http://yum.postgresql.org/8.4/redhat/rhel-6-i386/pgdg-redhat-8.4-3.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/8.4/redhat/rhel-6-x86_64/pgdg-redhat-8.4-3.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/8.4/redhat/rhel-5-i386/pgdg-redhat-8.4-3.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/8.4/redhat/rhel-5-x86_64/pgdg-redhat-8.4-3.noarch.rpm"
+              },
+              "4": {
+                "i386": "http://yum.postgresql.org/8.4/redhat/rhel-4-i386/pgdg-redhat-8.4-3.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/8.4/redhat/rhel-4-x86_64/pgdg-redhat-8.4-3.noarch.rpm"
+              }
+            },
+            "scientific": {
+              "6": {
+                "i386": "http://yum.postgresql.org/8.4/redhat/rhel-6-i386/pgdg-sl84-8.4-4.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/8.4/redhat/rhel-6-x86_64/pgdg-sl84-8.4-4.noarch.rpm"
+              },
+              "5": {
+                "i386": "http://yum.postgresql.org/8.4/redhat/rhel-5-i386/pgdg-sl-8.4-4.noarch.rpm",
+                "x86_64": "http://yum.postgresql.org/8.4/redhat/rhel-5-x86_64/pgdg-sl-8.4-4.noarch.rpm"
+              }
+            },
+            "fedora": {
+              "14": {
+                "i386": "http://yum.postgresql.org/8.4/fedora/fedora-14-i386/",
+                "x86_64": "http://yum.postgresql.org/8.4/fedora/fedora-14-x86_64/"
+              },
+              "13": {
+                "i386": "http://yum.postgresql.org/8.4/fedora/fedora-13-i386/",
+                "x86_64": "http://yum.postgresql.org/8.4/fedora/fedora-13-x86_64/"
+              },
+              "12": {
+                "i386": "http://yum.postgresql.org/8.4/fedora/fedora-12-i386/",
+                "x86_64": "http://yum.postgresql.org/8.4/fedora/fedora-12-x86_64/"
+              },
+              "8": {
+                "i386": "http://yum.postgresql.org/8.4/fedora/fedora-8-i386/",
+                "x86_64": "http://yum.postgresql.org/8.4/fedora/fedora-8-x86_64/"
+              },
+              "7": {
+                "i386": "http://yum.postgresql.org/8.4/fedora/fedora-7-i386/",
+                "x86_64": "http://yum.postgresql.org/8.4/fedora/fedora-7-x86_64/"
+              }
+            }
+          }
+        }
+      }
+    },
     "firewall": {
       "allow_ssh": false,
       "ufw": {
@@ -37,8 +449,8 @@
       "jdk_version": "6",
       "arch": "x86_64",
       "openjdk_packages": [
-        "java-1.8.0-openjdk",
-        "java-1.8.0-openjdk-devel"
+        "java-1.7.0-openjdk",
+        "java-1.7.0-openjdk-devel"
       ],
       "openjdk_version": null,
       "accept_license_agreement": false,
@@ -299,6 +711,330 @@
       ],
       "setup_bin": false,
       "install_java": true
+    },
+    "yum": {
+      "main": {
+        "cachedir": "/var/cache/yum/$basearch/$releasever",
+        "distroverpkg": "centos-release",
+        "alwaysprompt": null,
+        "assumeyes": null,
+        "bandwidth": null,
+        "bugtracker_url": null,
+        "clean_requirements_on_remove": null,
+        "color": null,
+        "color_list_available_downgrade": null,
+        "color_list_available_install": null,
+        "color_list_available_reinstall": null,
+        "color_list_available_upgrade": null,
+        "color_list_installed_extra": null,
+        "color_list_installed_newer": null,
+        "color_list_installed_older": null,
+        "color_list_installed_reinstall": null,
+        "color_search_match": null,
+        "color_update_installed": null,
+        "color_update_local": null,
+        "color_update_remote": null,
+        "commands": null,
+        "debuglevel": null,
+        "diskspacecheck": null,
+        "enable_group_conditionals": null,
+        "errorlevel": null,
+        "exactarch": null,
+        "exclude": null,
+        "gpgcheck": true,
+        "group_package_types": null,
+        "groupremove_leaf_only": null,
+        "history_list_view": null,
+        "history_record": null,
+        "history_record_packages": null,
+        "http_caching": null,
+        "installonly_limit": null,
+        "installonlypkgs": null,
+        "installroot": null,
+        "keepalive": null,
+        "keepcache": false,
+        "kernelpkgnames": null,
+        "localpkg_gpgcheck": null,
+        "logfile": "/var/log/yum.log",
+        "max_retries": null,
+        "mdpolicy": null,
+        "metadata_expire": null,
+        "mirrorlist_expire": null,
+        "multilib_policy": null,
+        "obsoletes": null,
+        "overwrite_groups": null,
+        "password": null,
+        "path": "/etc/yum.conf",
+        "persistdir": null,
+        "pluginconfpath": null,
+        "pluginpath": null,
+        "plugins": null,
+        "protected_multilib": null,
+        "protected_packages": null,
+        "proxy": null,
+        "proxy_password": null,
+        "proxy_username": null,
+        "recent": null,
+        "releasever": null,
+        "repo_gpgcheck": null,
+        "reposdir": null,
+        "reset_nice": null,
+        "rpmverbosity": null,
+        "showdupesfromrepos": null,
+        "skip_broken": null,
+        "ssl_check_cert_permissions": null,
+        "sslcacert": null,
+        "sslclientcert": null,
+        "sslclientkey": null,
+        "sslverify": null,
+        "syslog_device": null,
+        "syslog_facility": null,
+        "syslog_ident": null,
+        "throttle": null,
+        "timeout": null,
+        "tolerant": false,
+        "tsflags": null,
+        "username": null
+      },
+      "mysql-connectors-community": {
+        "repositoryid": "mysql-connectors-community",
+        "gpgkey": "https://raw.githubusercontent.com/chef-cookbooks/yum-mysql-community/master/files/default/mysql_pubkey.asc",
+        "description": "MySQL Connectors Community",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": true,
+        "baseurl": "http://repo.mysql.com/yum/mysql-connectors-community/el/$releasever/$basearch/"
+      },
+      "mysql55-community": {
+        "repositoryid": "mysql55-community",
+        "gpgkey": "https://raw.githubusercontent.com/chef-cookbooks/yum-mysql-community/master/files/default/mysql_pubkey.asc",
+        "description": "MySQL 5.5 Community Server",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": true,
+        "baseurl": "http://repo.mysql.com/yum/mysql-5.5-community/el/$releasever/$basearch/"
+      },
+      "mysql56-community": {
+        "repositoryid": "mysql56-community",
+        "gpgkey": "https://raw.githubusercontent.com/chef-cookbooks/yum-mysql-community/master/files/default/mysql_pubkey.asc",
+        "description": "MySQL 5.6 Community Server",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": true,
+        "baseurl": "http://repo.mysql.com/yum/mysql-5.6-community/el/$releasever/$basearch/"
+      },
+      "mysql57-community": {
+        "repositoryid": "mysql57-community",
+        "gpgkey": "https://raw.githubusercontent.com/chef-cookbooks/yum-mysql-community/master/files/default/mysql_pubkey.asc",
+        "description": "MySQL 5.7 Community Server",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": true,
+        "baseurl": "http://repo.mysql.com/yum/mysql-5.7-community/el/$releasever/$basearch/"
+      },
+      "epel-debuginfo": {
+        "repositoryid": "epel-debuginfo",
+        "description": "Extra Packages for Enterprise Linux 6 - $basearch - Debug",
+        "mirrorlist": "https://mirrors.fedoraproject.org/metalink?repo=epel-debug-6&arch=$basearch",
+        "gpgkey": "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": false,
+        "managed": false
+      },
+      "epel-source": {
+        "repositoryid": "epel-source",
+        "description": "Extra Packages for Enterprise Linux 6 - $basearch - Source",
+        "mirrorlist": "https://mirrors.fedoraproject.org/metalink?repo=epel-source-6&arch=$basearch",
+        "gpgkey": "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": false,
+        "managed": false
+      },
+      "epel-testing-debuginfo": {
+        "repositoryid": "epel-testing-debuginfo",
+        "description": "Extra Packages for Enterprise Linux 6 - Testing - $basearch Debug",
+        "mirrorlist": "https://mirrors.fedoraproject.org/metalink?repo=testing-debug-epel6&arch=$basearch",
+        "gpgkey": "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": false,
+        "managed": false
+      },
+      "epel-testing-source": {
+        "repositoryid": "epel-testing-source",
+        "description": "Extra Packages for Enterprise Linux 6 - Testing - $basearch Source",
+        "mirrorlist": "https://mirrors.fedoraproject.org/metalink?repo=testing-source-epel6&arch=$basearch",
+        "gpgkey": "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": false,
+        "managed": false
+      },
+      "epel-testing": {
+        "repositoryid": "epel-testing",
+        "description": "Extra Packages for Enterprise Linux 6 - Testing - $basearch",
+        "mirrorlist": "https://mirrors.fedoraproject.org/metalink?repo=testing-epel6&arch=$basearch",
+        "gpgkey": "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": false,
+        "managed": false
+      },
+      "epel": {
+        "repositoryid": "epel",
+        "description": "Extra Packages for Enterprise Linux 6 - $basearch",
+        "mirrorlist": "https://mirrors.fedoraproject.org/metalink?repo=epel-6&arch=$basearch",
+        "gpgkey": "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6",
+        "failovermethod": "priority",
+        "gpgcheck": true,
+        "enabled": true,
+        "managed": true
+      }
+    },
+    "yum-epel": {
+      "repositories": [
+        "epel",
+        "epel-debuginfo",
+        "epel-source",
+        "epel-testing",
+        "epel-testing-debuginfo",
+        "epel-testing-source"
+      ]
+    },
+    "mariadb": {
+      "configuration": {
+        "path": "/etc",
+        "includedir": "/etc/my.cnf.d"
+      },
+      "mysqld": {
+        "socket": "/var/lib/mysql/mysql.sock",
+        "service_name": "mariadb",
+        "user": "mysql",
+        "port": "3306",
+        "basedir": "/usr",
+        "default_datadir": "/var/lib/mysql",
+        "datadir": "/var/lib/mysql",
+        "tmpdir": "/var/tmp",
+        "lc_messages_dir": "/usr/share/mysql",
+        "lc_messages": "en_US",
+        "skip_external_locking": "true",
+        "bind_address": "127.0.0.1",
+        "max_connections": "100",
+        "connect_timeout": "5",
+        "wait_timeout": "600",
+        "max_allowed_packet": "16M",
+        "thread_cache_size": "128",
+        "sort_buffer_size": "4M",
+        "bulk_insert_buffer_size": "16M",
+        "tmp_table_size": "32M",
+        "max_heap_table_size": "32M",
+        "myisam_recover": "BACKUP",
+        "key_buffer_size": "128M",
+        "open_files_limit": "",
+        "table_open_cache": "400",
+        "myisam_sort_buffer_size": "512M",
+        "concurrent_insert": "2",
+        "read_buffer_size": "2M",
+        "read_rnd_buffer_size": "1M",
+        "query_cache_limit": "128K",
+        "query_cache_size": "64M",
+        "query_cache_type": "",
+        "default_storage_engine": "InnoDB",
+        "options": {
+
+        }
+      },
+      "client": {
+        "socket": "/var/lib/mysql/mysql.sock",
+        "port": 3306,
+        "options": {
+
+        },
+        "development_files": true
+      },
+      "mysqld_safe": {
+        "socket": "/var/lib/mysql/mysql.sock",
+        "options": {
+
+        }
+      },
+      "forbid_remote_root": true,
+      "server_root_password": "",
+      "allow_root_pass_change": false,
+      "innodb": {
+        "log_file_size": "",
+        "bps_percentage_memory": false,
+        "buffer_pool_size": "256M",
+        "log_buffer_size": "8M",
+        "file_per_table": "1",
+        "open_files": "400",
+        "io_capacity": "400",
+        "flush_method": "O_DIRECT",
+        "options": {
+
+        }
+      },
+      "galera": {
+        "cluster_name": "galera_cluster",
+        "cluster_search_query": "",
+        "wsrep_sst_method": "rsync",
+        "wsrep_provider": "/usr/lib/galera/libgalera_smm.so",
+        "options": {
+
+        },
+        "cluster_nodes": [
+
+        ]
+      },
+      "replication": {
+        "server_id": "",
+        "log_bin": "/var/log/mysql/mariadb-bin",
+        "log_bin_index": "/var/log/mysql/mariadb-bin.index",
+        "expire_logs_days": "10",
+        "max_binlog_size": "100M",
+        "options": {
+
+        }
+      },
+      "mysqldump": {
+        "quick": "true",
+        "quote_names": "true",
+        "max_allowed_packet": "16M"
+      },
+      "isamchk": {
+        "key_buffer": "16M"
+      },
+      "debian": {
+        "user": "debian-sys-maint",
+        "password": "please-change-me",
+        "host": "localhost"
+      },
+      "install": {
+        "type": "package",
+        "version": "10.0",
+        "prefer_os_package": false
+      },
+      "use_default_repository": false,
+      "apt_repository": {
+        "base_url": "ftp.igh.cnrs.fr/pub/mariadb/repo"
+      },
+      "plugins_options": {
+        "auto_install": true
+      },
+      "plugins": {
+        "audit": false
+      },
+      "plugins_loading": {
+        "audit": "server_audit=server_audit.so"
+      },
+      "audit_plugin": {
+        "server_audit_events": "",
+        "server_audit_output_type": "file",
+        "server_audit_syslog_facility": "LOG_USER",
+        "server_audit_syslog_priority": "LOG_INFO"
+      }
     }
   },
   "automatic": {
@@ -328,28 +1064,9 @@
         "builddate": "Nov 22 2013, 12:16:22"
       },
       "c": {
-        "gcc": {
-          "version": "4.4.7",
-          "description": "gcc version 4.4.7 20120313 (Red Hat 4.4.7-16) (GCC) "
-        },
         "glibc": {
           "version": "2.12",
           "description": "GNU C Library stable release version 2.12, by Roland McGrath et al."
-        }
-      },
-      "perl": {
-        "version": "5.10.1",
-        "archname": "x86_64-linux-thread-multi"
-      },
-      "java": {
-        "version": "1.8.0_51",
-        "runtime": {
-          "name": "Java(TM) SE Runtime Environment",
-          "build": "1.8.0_51-b16"
-        },
-        "hotspot": {
-          "name": "Java HotSpot(TM) 64-Bit Server VM",
-          "build": "25.51-b03, mixed mode"
         }
       }
     },
@@ -367,7 +1084,7 @@
         },
         "ipv6": {
           "size": "317340",
-          "refcount": "150"
+          "refcount": "26"
         },
         "ppdev": {
           "size": "8537",
@@ -587,8 +1304,8 @@
           },
           "state": "up",
           "arp": {
-            "10.0.2.2": "52:54:00:12:35:02",
-            "10.0.2.3": "52:54:00:12:35:03"
+            "10.0.2.3": "52:54:00:12:35:03",
+            "10.0.2.2": "52:54:00:12:35:02"
           },
           "routes": [
             {
@@ -629,7 +1346,7 @@
           ],
           "encapsulation": "Ethernet",
           "addresses": {
-            "08:00:27:6F:B8:28": {
+            "08:00:27:CA:56:D0": {
               "family": "lladdr"
             },
             "33.33.33.93": {
@@ -639,7 +1356,7 @@
               "broadcast": "33.33.33.255",
               "scope": "Global"
             },
-            "fe80::a00:27ff:fe6f:b828": {
+            "fe80::a00:27ff:feca:56d0": {
               "family": "inet6",
               "prefixlen": "64",
               "scope": "Link"
@@ -677,15 +1394,15 @@
         "interfaces": {
           "lo": {
             "rx": {
-              "bytes": "229843183",
-              "packets": "2331033",
+              "bytes": "0",
+              "packets": "0",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
             },
             "tx": {
-              "bytes": "229843183",
-              "packets": "2331033",
+              "bytes": "0",
+              "packets": "0",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
@@ -695,16 +1412,16 @@
           "eth0": {
             "tx": {
               "queuelen": "1000",
-              "bytes": "20338023",
-              "packets": "370345",
+              "bytes": "588696",
+              "packets": "8601",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
               "collisions": "0"
             },
             "rx": {
-              "bytes": "1142100947",
-              "packets": "1244596",
+              "bytes": "10628516",
+              "packets": "13147",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
@@ -713,16 +1430,16 @@
           "eth1": {
             "tx": {
               "queuelen": "1000",
-              "bytes": "1198",
-              "packets": "17",
+              "bytes": "552",
+              "packets": "8",
               "errors": "0",
               "drop": "0",
               "carrier": "0",
               "collisions": "0"
             },
             "rx": {
-              "bytes": "3120",
-              "packets": "30",
+              "bytes": "0",
+              "packets": "0",
               "errors": "0",
               "drop": "0",
               "overrun": "0"
@@ -733,7 +1450,7 @@
     },
     "ipaddress": "10.0.2.15",
     "macaddress": "08:00:27:CE:08:3D",
-    "ip6address": "fe80::a00:27ff:fe6f:b828",
+    "ip6address": "fe80::a00:27ff:feca:56d0",
     "keys": {
       "ssh": {
         "host_dsa_public": "AAAAB3NzaC1kc3MAAACBAJhQyKxS0S7eBPSQAQFflxc/+PS9qHLlqF/uXOzLYQVqiPFc+T69/qDkGXSs1QCmzkE1uZn+n1b7cgWrO60SXGWOvfcCksj1RNh11UgI9gYdhyQ5nsISyIgjQIsMy8yFbQ/c8Cfm3PxqsxB1BN+8xZHoK7TVtfKo2k4Oazry5GIpAAAAFQDcs+i68mliSOy92y1mVcn6uhPNvwAAAIEAlxgquxWMUWiKALhLRM41y1ODpSIw83EE87BzUerXlF87SIYQRM6TRHpAVzzoNNBIXsJyifffDD0cf9RX0ygv03+o1O/4+oi9LvdwDA2t/yUGAGnXNIK8Xcof09/r3dVy2o+pxAIBgztHCezNSdsAEHb0k/v9l3CjqpkW4/x3tesAAACABjVw5Z0thBBCRODEjnYh+g8TDb0QIgCz+kwn6/ZmlyHYYcTlmnB6IqJxJqszQuDUKbprLXH0MWrEfMh3NYkOWwPo0WZfwaIccYRRQV2Y0ZhqIi/tpLne95FB+9oIo2i7iX5935yA1zqAvWhfcGdxjFcLJtZjij1f9yYasL9J0yw=",
@@ -902,7 +1619,7 @@
         "model": "58",
         "model_name": "Intel(R) Core(TM) i5-3230M CPU @ 2.60GHz",
         "stepping": "9",
-        "mhz": "2603.007",
+        "mhz": "2598.155",
         "cache_size": "6144 KB",
         "flags": [
           "fpu",
@@ -946,14 +1663,14 @@
     "filesystem": {
       "/dev/mapper/VolGroup-lv_root": {
         "kb_size": "39841176",
-        "kb_used": "5964164",
-        "kb_available": "31853180",
-        "percent_used": "16%",
+        "kb_used": "1459480",
+        "kb_available": "36357864",
+        "percent_used": "4%",
         "mount": "/",
         "total_inodes": "2531328",
-        "inodes_used": "246658",
-        "inodes_available": "2284670",
-        "inodes_percent_used": "10%",
+        "inodes_used": "60166",
+        "inodes_available": "2471162",
+        "inodes_percent_used": "3%",
         "fs_type": "ext4",
         "mount_options": [
           "rw"
@@ -961,14 +1678,14 @@
         "uuid": "097a9d08-afad-401d-af65-92a4c587a2e5"
       },
       "tmpfs": {
-        "kb_size": "1138392",
+        "kb_size": "1693400",
         "kb_used": "0",
-        "kb_available": "1138392",
+        "kb_available": "1693400",
         "percent_used": "0%",
         "mount": "/dev/shm",
-        "total_inodes": "284598",
+        "total_inodes": "423350",
         "inodes_used": "1",
-        "inodes_available": "284597",
+        "inodes_available": "423349",
         "inodes_percent_used": "1%",
         "fs_type": "tmpfs",
         "mount_options": [
@@ -994,9 +1711,9 @@
       },
       "vagrant": {
         "kb_size": "243924992",
-        "kb_used": "196849364",
-        "kb_available": "47075628",
-        "percent_used": "81%",
+        "kb_used": "193051740",
+        "kb_available": "50873252",
+        "percent_used": "80%",
         "mount": "/vagrant",
         "total_inodes": "1000",
         "inodes_used": "0",
@@ -1061,8 +1778,8 @@
           "rw",
           "seclabel",
           "relatime",
-          "size=1129520k",
-          "nr_inodes=282380",
+          "size=1684528k",
+          "nr_inodes=421132",
           "mode=755"
         ]
       },
@@ -1073,44 +1790,35 @@
           "rw",
           "relatime"
         ]
-      },
-      "cgroup": {
-        "mount": "/cgroup/cpuset",
-        "fs_type": "cgroup",
-        "mount_options": [
-          "rw",
-          "relatime",
-          "cpuset"
-        ]
       }
     },
     "memory": {
       "swap": {
-        "cached": "10880kB",
+        "cached": "0kB",
         "total": "950264kB",
-        "free": "630816kB"
+        "free": "950264kB"
       },
-      "total": "2276788kB",
-      "free": "209248kB",
-      "buffers": "59800kB",
-      "cached": "260544kB",
-      "active": "1303108kB",
-      "inactive": "564264kB",
-      "dirty": "176kB",
+      "total": "3386800kB",
+      "free": "2298152kB",
+      "buffers": "57420kB",
+      "cached": "733504kB",
+      "active": "242196kB",
+      "inactive": "660216kB",
+      "dirty": "3276kB",
       "writeback": "0kB",
-      "anon_pages": "1537092kB",
-      "mapped": "24756kB",
-      "slab": "139792kB",
-      "slab_reclaimable": "76532kB",
-      "slab_unreclaim": "63260kB",
-      "page_tables": "20452kB",
+      "anon_pages": "111504kB",
+      "mapped": "10972kB",
+      "slab": "147180kB",
+      "slab_reclaimable": "93216kB",
+      "slab_unreclaim": "53964kB",
+      "page_tables": "2752kB",
       "nfs_unstable": "0kB",
       "bounce": "0kB",
-      "commit_limit": "2088656kB",
-      "committed_as": "4082696kB",
+      "commit_limit": "2643664kB",
+      "committed_as": "220884kB",
       "vmalloc_total": "34359738367kB",
-      "vmalloc_used": "39692kB",
-      "vmalloc_chunk": "34359681016kB"
+      "vmalloc_used": "43776kB",
+      "vmalloc_chunk": "34359676920kB"
     },
     "etc": {
       "passwd": {
@@ -1281,55 +1989,6 @@
           "uid": 498,
           "shell": "/bin/false",
           "gecos": ""
-        },
-        "opscode": {
-          "dir": "/opt/opscode/embedded",
-          "gid": 497,
-          "uid": 497,
-          "shell": "/bin/sh",
-          "gecos": ""
-        },
-        "opscode-pgsql": {
-          "dir": "/var/opt/opscode/postgresql",
-          "gid": 496,
-          "uid": 496,
-          "shell": "/bin/sh",
-          "gecos": ""
-        },
-        "apache": {
-          "dir": "/var/www",
-          "gid": 48,
-          "uid": 48,
-          "shell": "/sbin/nologin",
-          "gecos": "Apache"
-        },
-        "mysql": {
-          "dir": "/var/lib/mysql",
-          "gid": 27,
-          "uid": 27,
-          "shell": "/bin/bash",
-          "gecos": "MySQL Server"
-        },
-        "dockerroot": {
-          "dir": "/var/lib/docker",
-          "gid": 494,
-          "uid": 495,
-          "shell": "/sbin/nologin",
-          "gecos": "Docker User"
-        },
-        "api-umbrella": {
-          "dir": "/opt/api-umbrella",
-          "gid": 493,
-          "uid": 494,
-          "shell": "/sbin/nologin",
-          "gecos": "API Umbrella user"
-        },
-        "api-umbrella-deploy": {
-          "dir": "/home/api-umbrella-deploy",
-          "gid": 492,
-          "uid": 493,
-          "shell": "/bin/bash",
-          "gecos": "API Umbrella deployment user"
         }
       },
       "group": {
@@ -1571,63 +2230,15 @@
           "members": [
 
           ]
-        },
-        "opscode": {
-          "gid": 497,
-          "members": [
-            "opscode"
-          ]
-        },
-        "opscode-pgsql": {
-          "gid": 496,
-          "members": [
-
-          ]
-        },
-        "apache": {
-          "gid": 48,
-          "members": [
-
-          ]
-        },
-        "mysql": {
-          "gid": 27,
-          "members": [
-
-          ]
-        },
-        "cgred": {
-          "gid": 495,
-          "members": [
-
-          ]
-        },
-        "dockerroot": {
-          "gid": 494,
-          "members": [
-
-          ]
-        },
-        "api-umbrella": {
-          "gid": 493,
-          "members": [
-            "api-umbrella-deploy"
-          ]
-        },
-        "api-umbrella-deploy": {
-          "gid": 492,
-          "members": [
-
-          ]
         }
       }
     },
     "current_user": "root",
-    "uptime_seconds": 23347,
-    "uptime": "6 hours 29 minutes 07 seconds",
-    "idletime_seconds": 20629,
-    "idletime": "5 hours 43 minutes 49 seconds",
-    "ohai_time": 1440215200.0174162,
+    "uptime_seconds": 338,
+    "uptime": "5 minutes 38 seconds",
+    "idletime_seconds": 273,
+    "idletime": "4 minutes 33 seconds",
+    "ohai_time": 1440519291.9365177,
     "hostname": "api",
     "machinename": "api.lyrisdemo.com",
     "fqdn": "api.lyrisdemo.com",
@@ -1641,7 +2252,9 @@
       "java::oracle",
       "java::set_java_home",
       "maven::default",
-      "ark::default"
+      "ark::default",
+      "build-essential::default",
+      "build-essential::_rhel"
     ],
     "expanded_run_list": [
       "lyrisdemo::default"
@@ -1662,6 +2275,15 @@
       "firewall": {
         "version": "1.6.1"
       },
+      "mysql2_chef_gem": {
+        "version": "1.0.2"
+      },
+      "mysql": {
+        "version": "6.0.31"
+      },
+      "database": {
+        "version": "4.0.8"
+      },
       "ark": {
         "version": "0.9.0"
       },
@@ -1671,11 +2293,44 @@
       "poise": {
         "version": "2.3.0"
       },
+      "build-essential": {
+        "version": "2.2.3"
+      },
+      "mariadb": {
+        "version": "0.3.1"
+      },
+      "yum-mysql-community": {
+        "version": "0.1.17"
+      },
+      "smf": {
+        "version": "2.2.7"
+      },
+      "postgresql": {
+        "version": "3.4.16"
+      },
       "7-zip": {
         "version": "1.0.2"
       },
       "chef_handler": {
         "version": "1.2.0"
+      },
+      "apt": {
+        "version": "2.8.2"
+      },
+      "yum": {
+        "version": "3.6.3"
+      },
+      "yum-epel": {
+        "version": "0.6.2"
+      },
+      "rbac": {
+        "version": "1.0.3"
+      },
+      "openssl": {
+        "version": "4.3.2"
+      },
+      "chef-sugar": {
+        "version": "3.1.1"
       }
     }
   },
