@@ -1,4 +1,4 @@
-# Chef Recipe for JRE 1.8, Maven 3.3, Mule CE 3.5 and API Umbrella
+# Chef Recipe for JRE 1.7, Maven 3.3, Mule CE 3.5 and API Umbrella
 
 This recipe downloads Mule and API Umbrella installation files under `/vagrant/resources/`. I recommend you to test this recipe in a Vagrant box. 
 
