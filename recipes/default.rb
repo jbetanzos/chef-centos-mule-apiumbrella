@@ -52,10 +52,14 @@ bash "configure_mule" do
   cwd "/opt"
   code <<-EOH
     tar -zxf /vagrant/resources/mule-standalone-3.5.0.tar.gz
-    (ln -s /opt/mule-standalone-3.5.0 /opt/mule)
+    ln -s /opt/mule-standalone-3.5.0 /opt/mule
+    rm -rf /opt/mule-standalone-3.5.0/apps
+    ln -fs /vagrant/mule/apps /opt/mule-standalone-3.5.0/apps
   EOH
   environment 'MULE_HOME' => '/opt/mule'
-  action :nothing
+  only_if '[ -f /vagrant/resources/mule-standalone-3.5.0.tar.gz ]'
+  not_if '[ -f /opt/mule/bin/mule ]'
+  action :run
   notifies :run, "execute[start-mule]", :immediately
 end
 
@@ -73,7 +77,9 @@ end
 
 execute 'start-mule' do
   command '/opt/mule/bin/mule -M-Dmule.mmc.bind.port=7773 -Wwrapper.daemonize=TRUE'
-  action :nothing
+  only_if '[ -f /opt/mule/bin/mule ]'
+  not_if '[ $(/opt/mule/bin/mule status) != *"not running"* ]'
+  action :run
 end
 
 firewall 'ufw' do
