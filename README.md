@@ -1,4 +1,5 @@
 # Chef Recipe for JRE 1.7, Maven 3.3, Mule CE 3.5 and API Umbrella
+###### If you are not familiar with vagrant check System Requirements section.
 
 This recipe downloads Mule and API Umbrella installation files under `/vagrant/resources/`. I recommend you to test this recipe in a Vagrant box. 
 
@@ -12,6 +13,7 @@ $ wget https://developer.nrel.gov/downloads/api-umbrella/el/6/api-umbrella-0.8.0
 
 $ wget https://repository.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/3.5.0/mule-standalone-3.5.0.tar.gz
 ```
+## Apply the recipe
 
 You can run this recipe in a local mode with the following command:
 ```
@@ -21,7 +23,7 @@ $ sudo chef-client —local-mode —runlist ‘recipe[lyrisdemo]’
 
 Make sure you are inside the `lyrisdemo` recipe directory. Port that are open to be seen in the host machine are: 80, 443, 8081
 
-Download the demo application using this [link](https://www.dropbox.com/s/3h9c01zhyqfcaog/asi-demo.zip?dl=0) and put the .zip file in `mule/apps`
+Download the demo application using this [link](https://dl.dropboxusercontent.com/u/77884581/apps/mule/asi-demo.zip) and put the .zip file in `mule/apps`
 
 You can test the Mule application by making this request
 ```
@@ -76,3 +78,59 @@ Open a browser and test the API manager by calling more than 5 times the service
     </RECORD>
 </DATASET>
 ```
+## System Requirements
+### VirtualBox installation
+Install VirtualBox from this [location](https://www.virtualbox.org/wiki/Downloads). Follow the installer instructions. 
+
+### Vagrant installation
+Install vagrant from this [site](http://www.vagrantup.com/downloads). Following the installer instruction. After you install Vagrant you will have the `vagrant` command available. 
+
+### Git installation
+Download and install Git from using this [link](https://git-scm.com/downloads). After you install Git you will have available the `git` command.
+
+### Basic Commands
+
+Using your OS console (Terminal, Console Windows, Bash) execute the following command in order to create your vagrant environment.
+```
+$ vagrant init chef/centos-6.5
+```
+
+Above command will generate the file `Vagrantfile`. Open the file and add the following lines after `config.vm.box = “chef/centos-6.5”`:
+```
+	config.vbguest.auto_update = false
+  config.vm.network “private_network”, ip: “33.33.33.93”
+  config.nfs.map_uid = 0
+  config.nfs.map_gid = 0
+  config.vm.provider “virtualbox” do |vb|
+      vb.memory = “3500”
+  end
+  config.vm.hostname = ‘api.lyrisdemo.com’
+  config.ssh.username = “vagrant”
+  config.ssh.shell = “bash -l”
+  config.ssh.keep_alive = true
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = false
+```
+Now you have vagrant ready, under the same directory where you have your Vagrantfile create the following files structure.
+```
+├── Vagrantfile
+├── mule
+│   └── apps
+├── recipes
+└── resources
+    ├── api-umbrella-0.8.0-1.el6.x86_64.rpm
+    ├── chef-server-core-12.1.2-1.el6.x86_64.rpm
+    ├── chefdk-0.7.0-1.el6.x86_64.rpm
+    └── mule-standalone-3.5.0.tar.gz
+```
+
+Check the first section of this document to make sure you have the `.rpm` and `.tar.gz` files.
+
+Now you can clone the repository under the `recipes` directory
+```
+$ git clone https://github.com/jbetanzos/puppet-centos-mule-apiumbrella.git
+```
+
+Then `vagrant up`. You need to install Chef Development Kit make sure you have downloaded the file `chefdk-0.7.0-1.el6.x86_64.rpm`. Then hit `vagrant ssh -c “sudo yum install -y /vagrant/resources/chefdk-0.7.0-1.el6.x86_64.rpm”`
+
+You are ready to continue with section *Apply the recipe* in this document.
